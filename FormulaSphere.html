@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#3b82f6">
+<meta name="description" content="FormulaSphere – 150+ math formulas across 12 categories. Installable PWA.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="FormulaSphere">
+<meta name="application-name" content="FormulaSphere">
+<meta name="msapplication-TileColor" content="#3b82f6">
+<title>FormulaSphere – Math Formula Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header id="topbar">
+  <button id="menu-btn" onclick="toggleSidebar()" title="Toggle sidebar">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="logo" onclick="goToDashboard()" title="Dashboard">&#x25CE; <span>Formula</span>Sphere</div>
+  <div id="search-wrap">
+    <span class="search-icon">&#x2315;</span>
+    <input id="search" type="text" placeholder="Search formulas&hellip;" oninput="handleSearch(this.value)" autocomplete="off">
+  </div>
+  <div class="top-stats">
+    <span class="stat"><b id="total-count">0</b> formulas</span>
+    <span class="stat"><b>12</b> topics</span>
+  </div>
+  <button id="install-btn"  title="Install FormulaSphere as an app">
+   <a href="./FormulaSphere.apk" target="_blank" style="display:flex;align-items:center;gap:6px;color:inherit">
+     <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+      <path d="M8 1v9M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="install-label" id="install-label">Install App</span>
+   </a>
+  </button>
+</header>
+
+<div id="overlay" onclick="toggleSidebar()"></div>
+
+<nav id="sidebar">
+  <div class="sb-head">Navigation</div>
+  <div class="sb-home active" id="sb-home-btn" onclick="goToDashboard()">
+    <span style="font-size:15px">&#8962;</span> Dashboard
+  </div>
+  <div class="sb-separator"></div>
+  <div class="sb-head">Topics &amp; Subtopics</div>
+  <div id="sb-list"></div>
+</nav>
+
+<main id="main">
+  <div id="content"></div>
+</main>
+
+<div id="toast"></div>
+
+<!-- ─────────────────────────────────────────
+     MOBILE INSTALL SHEET
+     ───────────────────────────────────────── -->
+<div id="ms-backdrop" onclick="hideMobileSheet()"></div>
+
+<div id="mobile-sheet" role="dialog" aria-modal="true" aria-label="Install FormulaSphere">
+
+  <!-- Drag handle -->
+  <div class="ms-handle"></div>
+
+  <!-- Header -->
+  <div class="ms-header">
+    <div class="ms-app-icon">&#x25CE;</div>
+    <div class="ms-header-info">
+      <div id="ms-platform-pill" class="ms-platform-pill" style="display:none"></div>
+      <div class="ms-header-title">Install FormulaSphere</div>
+      <div class="ms-header-sub">Free &bull; No store &bull; Works offline</div>
+    </div>
+  </div>
+
+  <!-- One-tap native notice (Android Chrome only) -->
+  <div class="ms-native-notice" id="ms-native-notice">
+    <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+      <circle cx="10" cy="10" r="9" stroke="#34a853" stroke-width="1.6"/>
+      <path d="M6 10l3 3 5-5" stroke="#34a853" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="ms-native-text"><b>One-tap install ready</b> — tap the button below to install directly</div>
+  </div>
+
+  <div class="ms-divider"></div>
+
+  <!-- ── Android Steps ── -->
+  <div id="ms-android-steps" style="display:none">
+    <div class="ms-steps">
+      <div class="ms-step">
+        <div class="ms-step-n a">1</div>
+        <div class="ms-step-txt">Tap <span class="ms-tag a">&#8942; Menu</span> in <b>Chrome's top-right corner</b></div>
+      </div>
+      <div class="ms-step">
+        <div class="ms-step-n a">2</div>
+        <div class="ms-step-txt">Select <span class="ms-tag a">Add to Home screen</span> from the list</div>
+      </div>
+      <div class="ms-step">
+        <div class="ms-step-n a">3</div>
+        <div class="ms-step-txt">Tap <b>Add</b> on the confirmation — done! &#x2705; Launches like a native app, no browser bar</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── iOS Steps ── -->
+  <div id="ms-ios-steps" style="display:none">
+    <div class="ms-steps">
+      <!-- Safari warning -->
+      <div class="ms-step" style="background:rgba(251,191,36,.06);border-color:rgba(251,191,36,.2)">
+        <div class="ms-step-n w">!</div>
+        <div class="ms-step-txt" style="color:#fbbf24">Must be open in <b>Safari</b> — Chrome &amp; Firefox on iOS don't support this</div>
+      </div>
+      <div class="ms-step">
+        <div class="ms-step-n i">1</div>
+        <div class="ms-step-txt">Tap the
+          <span class="ms-tag i">
+            <svg class="ms-share-svg" width="11" height="13" viewBox="0 0 11 14" fill="none">
+              <path d="M5.5 1v9M2.5 6l3 3.5L8.5 6M1 12h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Share
+          </span>
+          button at the <b>bottom of Safari</b>
+        </div>
+      </div>
+      <div class="ms-step">
+        <div class="ms-step-n i">2</div>
+        <div class="ms-step-txt">Scroll and tap <span class="ms-tag i">Add to Home Screen</span></div>
+      </div>
+      <div class="ms-step">
+        <div class="ms-step-n i">3</div>
+        <div class="ms-step-txt">Tap <b>Add</b> (top-right) — FormulaSphere appears as an app icon &#x2705;</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="ms-actions">
+    <button id="ms-primary-btn" onclick="mobileSheetAction()">
+      Add to Home Screen
+    </button>
+    <button id="ms-apk-btn" onclick="downloadAPKProject();hideMobileSheet(true)" style="width:100%;padding:12px 20px;background:transparent;border:1px solid rgba(59,130,246,.4);border-radius:12px;color:var(--blue);font-size:13px;font-family:var(--sans);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .15s">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1v9M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Download APK instead
+    </button>
+    <button id="ms-dismiss-btn" onclick="hideMobileSheet(true)">Not now</button>
+  </div>
+
+</div>
+
+<!-- Floating Action Button (appears after sheet is dismissed) -->
+<button id="ms-fab" onclick="showMobileSheet()" title="Install FormulaSphere">
+  <div id="ms-fab-pulse"></div>
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+    <path d="M11 2v12M7 10l4 4 4-4M3 17v1a2 2 0 002 2h12a2 2 0 002-2v-1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+<footer>
+  <div class="footer-content">
+    <div class="footer-left">
+      &#x25CE; FormulaSphere &copy; 2026
+    </div>
+    <div class="footer-right">
+      Made with &#10084;&#65039; by Piyush.
+    </div>
+  </div>
+</footer>
+<script src="./script.js"></script>
+</body>
+</html>
