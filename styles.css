@@ -198,15 +198,31 @@ body.sidebar-open #main{margin-left:var(--sidebar-w)}
 .search-count{font-family:var(--mono);font-size:10px;color:var(--text3);padding:2px 8px;background:var(--card);border:1px solid var(--border);border-radius:20px}
 
 /* ── FORMULA CARD ── */
-.fc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;transition:border-color .2s,transform .15s}
-.fc:hover{border-color:var(--border2);transform:translateY(-1px)}
+.fc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;transition:border-color .25s,transform .15s}
+.fc:hover{border-color:var(--cat-color);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.25)}
 .fc-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
 .fc-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.fc-title{font-size:12px;font-weight:600;color:var(--text2);letter-spacing:.3px}
-.fc-tag{margin-left:auto;font-family:var(--mono);font-size:9px;padding:1px 6px;border-radius:8px;border:1px solid var(--border2);color:var(--text3)}
-.fr{font-family:var(--mono);font-size:12.5px;color:#c8d6f0;background:rgba(255,255,255,.03);border:1px solid rgba(30,45,69,.8);border-radius:6px;padding:6px 10px;margin:3px 0;line-height:1.55;word-break:break-word}
-.fnote{font-size:11px;color:var(--text3);margin-top:5px;font-style:italic}
-.fbig{font-family:var(--mono);font-size:14px;color:#34d399;text-align:center;padding:10px 14px;background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.2);border-radius:8px;margin:6px 0;letter-spacing:.3px}
+.fc-title{font-size:12.5px;font-weight:600;color:var(--text2);letter-spacing:.3px}
+.fc-tag{margin-left:auto;font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:8px;border:1px solid var(--border2);color:var(--text3);background:rgba(0,0,0,0.15)}
+.fr{
+  font-family:var(--mono);font-size:12.5px;color:#c8d6f0;
+  background:rgba(255,255,255,.02);border:1px solid rgba(30,45,69,.5);
+  border-left:3px solid var(--cat-color);
+  border-radius:6px;padding:6px 10px;margin:4px 0;line-height:1.55;
+  word-break:break-word;transition:background .15s, border-color .15s;
+}
+.fr:hover{background:rgba(255,255,255,.05);border-left-color:#fff}
+.f-lhs{color:var(--text2);font-weight:500}
+.f-op{color:var(--cat-color);margin:0 6px;font-weight:600}
+.f-rhs{color:var(--text);font-weight:600}
+.fnote{font-size:11px;color:var(--text3);margin-top:6px;font-style:italic}
+.fbig{
+  font-family:var(--mono);font-size:14.5px;color:var(--cat-color);text-align:center;
+  padding:12px 14px;background:rgba(255,255,255,.01);
+  border:1px solid rgba(30,45,69,.5);border-left:4px solid var(--cat-color);
+  border-radius:8px;margin:8px 0;letter-spacing:.3px;font-weight:700;
+  box-shadow:inset 0 0 12px rgba(255,255,255,.01);
+}
 .fcode{font-family:var(--mono);font-size:11.5px;background:#06090f;border:1px solid var(--border);border-radius:8px;padding:10px 12px;overflow-x:auto;line-height:1.75;margin-top:6px;white-space:pre-wrap;word-break:break-all}
 .kw{color:#a78bfa}.fn{color:#60a5fa}.cm{color:#3d5070;font-style:italic}.nm{color:#f59e0b}
 .ftable{width:100%;border-collapse:collapse;margin-top:6px}
