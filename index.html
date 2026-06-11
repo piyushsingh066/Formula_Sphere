@@ -60,6 +60,7 @@
 <!-- ─────────────────────────────────────────
      MOBILE INSTALL SHEET
      ───────────────────────────────────────── -->
+
 <div id="ms-backdrop" onclick="hideMobileSheet()"></div>
 
 <div id="mobile-sheet" role="dialog" aria-modal="true" aria-label="Install FormulaSphere">
@@ -137,15 +138,20 @@
     </div>
   </div>
 
+  <!-- Actions -->
+  <div class="ms-actions">
+    <button id="ms-primary-btn" onclick="mobileSheetAction()">
+      Add to Home Screen
+    </button>
+    <button id="ms-apk-btn" onclick="downloadAPKProject();hideMobileSheet(true)" style="width:100%;padding:12px 20px;background:transparent;border:1px solid rgba(59,130,246,.4);border-radius:12px;color:var(--blue);font-size:13px;font-family:var(--sans);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .15s">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1v9M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Download APK instead
+    </button>
+    <button id="ms-dismiss-btn" onclick="hideMobileSheet(true)">Not now</button>
+  </div>
+
 </div>
 
-<!-- Floating Action Button (appears after sheet is dismissed) -->
-<button id="ms-fab" onclick="showMobileSheet()" title="Install FormulaSphere">
-  <div id="ms-fab-pulse"></div>
-  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-    <path d="M11 2v12M7 10l4 4 4-4M3 17v1a2 2 0 002 2h12a2 2 0 002-2v-1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</button>
 <footer>
   <div class="footer-content">
     <div class="footer-left">
