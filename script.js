@@ -106,219 +106,265 @@ const SECTIONS = [
   { catId: 'matrix', title: 'Vectors', tag: 'Matrix', formulas: ['|v| = √(x²+y²+z²)', 'Unit: v̂ = v/|v|', 'Dot: a·b = |a||b|cosθ', 'Cross: |a×b| = |a||b|sinθ', 'Projection: (a·b/|b|²)b'] },
   { catId: 'matrix', title: 'Eigenvalues', tag: 'Matrix', formulas: ['Av = λv', 'det(A−λI) = 0', 'Trace = Σ eigenvalues', 'det(A) = Π eigenvalues'] },
   // 1. Number Systems
-  { catId: 'alg', title: 'Number Systems', tag: 'Algebra', formulas: [
-    'Natural Numbers: ℕ = {1, 2, 3, …}',
-    'Whole Numbers: 𝕎 = {0, 1, 2, …}',
-    'Integers: ℤ = {…, −2, −1, 0, 1, 2, …}',
-    'Rational Numbers: ℚ = {p/q : p,q ∈ ℤ, q ≠ 0}',
-    'Real Numbers: ℝ = Rational ∪ Irrational',
-    'Complex Numbers: ℂ = {a + bi : a,b ∈ ℝ}',
-    'Divisibility by 3/9: Sum of digits is divisible by 3/9',
-    'Divisibility by 4/8: Last 2/3 digits divisible by 4/8',
-    'Divisibility by 11: (Sum of odd-pos digits) − (Sum of even-pos digits) is divisible by 11'
-  ] },
+  {
+    catId: 'alg', title: 'Number Systems', tag: 'Algebra', formulas: [
+      'Natural Numbers: ℕ = {1, 2, 3, …}',
+      'Whole Numbers: 𝕎 = {0, 1, 2, …}',
+      'Integers: ℤ = {…, −2, −1, 0, 1, 2, …}',
+      'Rational Numbers: ℚ = {p/q : p,q ∈ ℤ, q ≠ 0}',
+      'Real Numbers: ℝ = Rational ∪ Irrational',
+      'Complex Numbers: ℂ = {a + bi : a,b ∈ ℝ}',
+      'Divisibility by 3/9: Sum of digits is divisible by 3/9',
+      'Divisibility by 4/8: Last 2/3 digits divisible by 4/8',
+      'Divisibility by 11: (Sum of odd-pos digits) − (Sum of even-pos digits) is divisible by 11'
+    ]
+  },
   // 2. Algebraic Identities
-  { catId: 'alg', title: 'Algebraic Identities', tag: 'Algebra', formulas: [
-    '(a + b + c)² = a² + b² + c² + 2ab + 2bc + 2ca',
-    '(a + b)³ = a³ + b³ + 3ab(a + b) = a³ + 3a²b + 3ab² + b³',
-    '(a − b)³ = a³ − b³ − 3ab(a − b) = a³ − 3a²b + 3ab² − b³',
-    'a³ + b³ + c³ − 3abc = (a + b + c)(a² + b² + c² − ab − bc − ca)',
-    'If a + b + c = 0, then a³ + b³ + c³ = 3abc'
-  ] },
+  {
+    catId: 'alg', title: 'Algebraic Identities', tag: 'Algebra', formulas: [
+      '(a + b + c)² = a² + b² + c² + 2ab + 2bc + 2ca',
+      '(a + b)³ = a³ + b³ + 3ab(a + b) = a³ + 3a²b + 3ab² + b³',
+      '(a − b)³ = a³ − b³ − 3ab(a − b) = a³ − 3a²b + 3ab² − b³',
+      'a³ + b³ + c³ − 3abc = (a + b + c)(a² + b² + c² − ab − bc − ca)',
+      'If a + b + c = 0, then a³ + b³ + c³ = 3abc'
+    ]
+  },
   // 3. Polynomials
-  { catId: 'alg', title: 'Polynomials', tag: 'Algebra', formulas: [
-    'General form: P(x) = aₙxⁿ + aₙ₋₁xⁿ⁻¹ + … + a₀',
-    'Remainder Theorem: Remainder of P(x) ÷ (x − a) is P(a)',
-    'Factor Theorem: (x − a) is a factor of P(x) ⟺ P(a) = 0',
-    'Cubic Roots: ax³ + bx² + cx + d = 0 with roots α, β, γ',
-    'α + β + γ = −b/a',
-    'αβ + βγ + γα = c/a',
-    'αβγ = −d/a'
-  ] },
+  {
+    catId: 'alg', title: 'Polynomials', tag: 'Algebra', formulas: [
+      'General form: P(x) = aₙxⁿ + aₙ₋₁xⁿ⁻¹ + … + a₀',
+      'Remainder Theorem: Remainder of P(x) ÷ (x − a) is P(a)',
+      'Factor Theorem: (x − a) is a factor of P(x) ⟺ P(a) = 0',
+      'Cubic Roots: ax³ + bx² + cx + d = 0 with roots α, β, γ',
+      'α + β + γ = −b/a',
+      'αβ + βγ + γα = c/a',
+      'αβγ = −d/a'
+    ]
+  },
   // 4. Linear Equations
-  { catId: 'alg', title: 'Linear Equations', tag: 'Algebra', formulas: [
-    'Slope-Intercept: y = mx + b',
-    'Point-Slope: y − y₁ = m(x − x₁)',
-    'Standard Form: Ax + By = C',
-    '2-Var System: a₁x + b₁y = c₁, a₂x + b₂y = c₂',
-    'x = (c₁b₂ − c₂b₁) / (a₁b₂ − a₂b₁)',
-    'y = (a₁c₂ − a₂c₁) / (a₁b₂ − a₂b₁)'
-  ] },
+  {
+    catId: 'alg', title: 'Linear Equations', tag: 'Algebra', formulas: [
+      'Slope-Intercept: y = mx + b',
+      'Point-Slope: y − y₁ = m(x − x₁)',
+      'Standard Form: Ax + By = C',
+      '2-Var System: a₁x + b₁y = c₁, a₂x + b₂y = c₂',
+      'x = (c₁b₂ − c₂b₁) / (a₁b₂ − a₂b₁)',
+      'y = (a₁c₂ − a₂c₁) / (a₁b₂ − a₂b₁)'
+    ]
+  },
   // 5. Inverse Trigonometry
-  { catId: 'trig', title: 'Inverse Trigonometry', tag: 'Trig', formulas: [
-    'sin⁻¹(x) domain: [−1, 1], range: [−π/2, π/2]',
-    'cos⁻¹(x) domain: [−1, 1], range: [0, π]',
-    'tan⁻¹(x) domain: ℝ, range: (−π/2, π/2)',
-    'sin⁻¹(x) + cos⁻¹(x) = π/2',
-    'tan⁻¹(x) + cot⁻¹(x) = π/2',
-    'tan⁻¹(x) + tan⁻¹(y) = tan⁻¹((x + y) / (1 − xy))  [if xy < 1]'
-  ] },
+  {
+    catId: 'trig', title: 'Inverse Trigonometry', tag: 'Trig', formulas: [
+      'sin⁻¹(x) domain: [−1, 1], range: [−π/2, π/2]',
+      'cos⁻¹(x) domain: [−1, 1], range: [0, π]',
+      'tan⁻¹(x) domain: ℝ, range: (−π/2, π/2)',
+      'sin⁻¹(x) + cos⁻¹(x) = π/2',
+      'tan⁻¹(x) + cot⁻¹(x) = π/2',
+      'tan⁻¹(x) + tan⁻¹(y) = tan⁻¹((x + y) / (1 − xy))  [if xy < 1]'
+    ]
+  },
   // 6. Parabola
-  { catId: 'coord', title: 'Parabola', tag: 'Coord', formulas: [
-    'Standard: y² = 4ax (opens right)',
-    'Standard: x² = 4ay (opens up)',
-    'For y² = 4ax:',
-    'Focus = (a, 0), Directrix: x = −a',
-    'Axis: y = 0, Latus Rectum = 4a',
-    'Focal distance of point P(x, y) = x + a'
-  ] },
+  {
+    catId: 'coord', title: 'Parabola', tag: 'Coord', formulas: [
+      'Standard: y² = 4ax (opens right)',
+      'Standard: x² = 4ay (opens up)',
+      'For y² = 4ax:',
+      'Focus = (a, 0), Directrix: x = −a',
+      'Axis: y = 0, Latus Rectum = 4a',
+      'Focal distance of point P(x, y) = x + a'
+    ]
+  },
   // 7. Ellipse
-  { catId: 'coord', title: 'Ellipse', tag: 'Coord', formulas: [
-    'Standard: x²/a² + y²/b² = 1  (a > b)',
-    'Eccentricity: e = √(1 − b²/a²)',
-    'Foci: (±ae, 0), Directrices: x = ±a/e',
-    'Vertices: (±a, 0), Co-vertices: (0, ±b)',
-    'Major Axis = 2a, Minor Axis = 2b',
-    'Latus Rectum = 2b²/a'
-  ] },
+  {
+    catId: 'coord', title: 'Ellipse', tag: 'Coord', formulas: [
+      'Standard: x²/a² + y²/b² = 1  (a > b)',
+      'Eccentricity: e = √(1 − b²/a²)',
+      'Foci: (±ae, 0), Directrices: x = ±a/e',
+      'Vertices: (±a, 0), Co-vertices: (0, ±b)',
+      'Major Axis = 2a, Minor Axis = 2b',
+      'Latus Rectum = 2b²/a'
+    ]
+  },
   // 8. Hyperbola
-  { catId: 'coord', title: 'Hyperbola', tag: 'Coord', formulas: [
-    'Standard: x²/a² − y²/b² = 1',
-    'Eccentricity: e = √(1 + b²/a²)',
-    'Foci: (±ae, 0), Directrices: x = ±a/e',
-    'Vertices: (±a, 0), Transverse Axis = 2a',
-    'Asymptotes: y = ±(b/a)x',
-    'Latus Rectum = 2b²/a'
-  ] },
+  {
+    catId: 'coord', title: 'Hyperbola', tag: 'Coord', formulas: [
+      'Standard: x²/a² − y²/b² = 1',
+      'Eccentricity: e = √(1 + b²/a²)',
+      'Foci: (±ae, 0), Directrices: x = ±a/e',
+      'Vertices: (±a, 0), Transverse Axis = 2a',
+      'Asymptotes: y = ±(b/a)x',
+      'Latus Rectum = 2b²/a'
+    ]
+  },
   // 9. Sets
-  { catId: 'discrete', title: 'Sets & Operations', tag: 'Discrete', formulas: [
-    'Union: A ∪ B = {x : x ∈ A or x ∈ B}',
-    'Intersection: A ∩ B = {x : x ∈ A and x ∈ B}',
-    'Difference: A − B = {x : x ∈ A and x ∉ B}',
-    'Complement: A′ = {x ∈ U : x ∉ A}',
-    'De Morgan: (A ∪ B)′ = A′ ∩ B′',
-    'De Morgan: (A ∩ B)′ = A′ ∪ B′',
-    'n(A ∪ B) = n(A) + n(B) − n(A ∩ B)',
-    'n(A ∪ B ∪ C) = n(A)+n(B)+n(C) − n(A∩B)−n(B∩C)−n(C∩A) + n(A∩B∩C)',
-    'Subsets count: 2ⁿ for set of size n'
-  ] },
+  {
+    catId: 'discrete', title: 'Sets & Operations', tag: 'Discrete', formulas: [
+      'Union: A ∪ B = {x : x ∈ A or x ∈ B}',
+      'Intersection: A ∩ B = {x : x ∈ A and x ∈ B}',
+      'Difference: A − B = {x : x ∈ A and x ∉ B}',
+      'Complement: A′ = {x ∈ U : x ∉ A}',
+      'De Morgan: (A ∪ B)′ = A′ ∩ B′',
+      'De Morgan: (A ∩ B)′ = A′ ∪ B′',
+      'n(A ∪ B) = n(A) + n(B) − n(A ∩ B)',
+      'n(A ∪ B ∪ C) = n(A)+n(B)+n(C) − n(A∩B)−n(B∩C)−n(C∩A) + n(A∩B∩C)',
+      'Subsets count: 2ⁿ for set of size n'
+    ]
+  },
   // 10. Relations and Functions
-  { catId: 'discrete', title: 'Relations & Functions', tag: 'Discrete', formulas: [
-    'Cartesian Product: A × B = {(a, b) : a ∈ A, b ∈ B}',
-    'Reflexive Relation: aRa for all a ∈ A',
-    'Symmetric Relation: aRb ⟹ bRa',
-    'Transitive Relation: aRb and bRc ⟹ aRc',
-    'Equivalence: Reflexive + Symmetric + Transitive',
-    'Injective (1-1): f(x) = f(y) ⟹ x = y',
-    'Surjective (Onto): Range of f = Codomain of f',
-    'Bijective: Both Injective and Surjective',
-    'Composition: (f ∘ g)(x) = f(g(x))'
-  ] },
+  {
+    catId: 'discrete', title: 'Relations & Functions', tag: 'Discrete', formulas: [
+      'Cartesian Product: A × B = {(a, b) : a ∈ A, b ∈ B}',
+      'Reflexive Relation: aRa for all a ∈ A',
+      'Symmetric Relation: aRb ⟹ bRa',
+      'Transitive Relation: aRb and bRc ⟹ aRc',
+      'Equivalence: Reflexive + Symmetric + Transitive',
+      'Injective (1-1): f(x) = f(y) ⟹ x = y',
+      'Surjective (Onto): Range of f = Codomain of f',
+      'Bijective: Both Injective and Surjective',
+      'Composition: (f ∘ g)(x) = f(g(x))'
+    ]
+  },
   // 11. Applications of Derivatives
-  { catId: 'calc', title: 'Applications of Derivatives', tag: 'Calc', formulas: [
-    'Tangent Slope at P(x₁, y₁): m = f′(x₁)',
-    'Tangent Line: y − y₁ = f′(x₁)(x − x₁)',
-    'Normal Line: y − y₁ = −(1 / f′(x₁))(x − x₁)',
-    'Increasing: f′(x) ≥ 0',
-    'Decreasing: f′(x) ≤ 0',
-    'Local Maxima: f′(c) = 0 and f″(c) < 0',
-    'Local Minima: f′(c) = 0 and f″(c) > 0'
-  ] },
+  {
+    catId: 'calc', title: 'Applications of Derivatives', tag: 'Calc', formulas: [
+      'Tangent Slope at P(x₁, y₁): m = f′(x₁)',
+      'Tangent Line: y − y₁ = f′(x₁)(x − x₁)',
+      'Normal Line: y − y₁ = −(1 / f′(x₁))(x − x₁)',
+      'Increasing: f′(x) ≥ 0',
+      'Decreasing: f′(x) ≤ 0',
+      'Local Maxima: f′(c) = 0 and f″(c) < 0',
+      'Local Minima: f′(c) = 0 and f″(c) > 0'
+    ]
+  },
   // 12. Applications of Integrals
-  { catId: 'calc', title: 'Applications of Integrals', tag: 'Calc', formulas: [
-    'Area under y = f(x) from a to b: A = ∫[a,b] f(x) dx',
-    'Area between f(x) and g(x): A = ∫[a,b] (f(x) − g(x)) dx  [f(x) ≥ g(x)]',
-    'Volume of Revolution (x-axis): V = π ∫[a,b] [f(x)]² dx',
-    'Volume of Revolution (y-axis): V = 2π ∫[a,b] x·f(x) dx'
-  ] },
+  {
+    catId: 'calc', title: 'Applications of Integrals', tag: 'Calc', formulas: [
+      'Area under y = f(x) from a to b: A = ∫[a,b] f(x) dx',
+      'Area between f(x) and g(x): A = ∫[a,b] (f(x) − g(x)) dx  [f(x) ≥ g(x)]',
+      'Volume of Revolution (x-axis): V = π ∫[a,b] [f(x)]² dx',
+      'Volume of Revolution (y-axis): V = 2π ∫[a,b] x·f(x) dx'
+    ]
+  },
   // 13. Differential Equations
-  { catId: 'calc', title: 'Differential Equations', tag: 'Calc', formulas: [
-    'Variable Separable: dy/dx = g(x)h(y) ⟹ ∫(1/h(y)) dy = ∫g(x) dx',
-    'Homogeneous: dy/dx = f(y/x) ⟹ substitute y = vx',
-    'Linear 1st Order: dy/dx + P(x)y = Q(x)',
-    'Integrating Factor: I.F. = e^(∫P(x) dx)',
-    'General Solution: y · I.F. = ∫(Q(x) · I.F.) dx + C'
-  ] },
+  {
+    catId: 'calc', title: 'Differential Equations', tag: 'Calc', formulas: [
+      'Variable Separable: dy/dx = g(x)h(y) ⟹ ∫(1/h(y)) dy = ∫g(x) dx',
+      'Homogeneous: dy/dx = f(y/x) ⟹ substitute y = vx',
+      'Linear 1st Order: dy/dx + P(x)y = Q(x)',
+      'Integrating Factor: I.F. = e^(∫P(x) dx)',
+      'General Solution: y · I.F. = ∫(Q(x) · I.F.) dx + C'
+    ]
+  },
   // 14. Three Dimensional Geometry
-  { catId: 'coord', title: '3D Coordinate Geometry', tag: 'Coord', formulas: [
-    'Direction Cosines: l = cos α, m = cos β, n = cos γ',
-    'DC Identity: l² + m² + n² = 1',
-    'Distance: d = √((x₂ − x₁)² + (y₂ − y₁)² + (z₂ − z₁)²)',
-    'Line Vector eq: r = a + λb',
-    'Line Cartesian eq: (x − x₁)/a = (y − y₁)/b = (z − z₁)/c',
-    'Plane Vector eq: r · n = d',
-    'Plane Cartesian eq: ax + by + cz = d',
-    'Plane Point-Normal: a(x − x₁) + b(y − y₁) + c(z − z₁) = 0'
-  ] },
+  {
+    catId: 'coord', title: '3D Coordinate Geometry', tag: 'Coord', formulas: [
+      'Direction Cosines: l = cos α, m = cos β, n = cos γ',
+      'DC Identity: l² + m² + n² = 1',
+      'Distance: d = √((x₂ − x₁)² + (y₂ − y₁)² + (z₂ − z₁)²)',
+      'Line Vector eq: r = a + λb',
+      'Line Cartesian eq: (x − x₁)/a = (y − y₁)/b = (z − z₁)/c',
+      'Plane Vector eq: r · n = d',
+      'Plane Cartesian eq: ax + by + cz = d',
+      'Plane Point-Normal: a(x − x₁) + b(y − y₁) + c(z − z₁) = 0'
+    ]
+  },
   // 15. Linear Programming
-  { catId: 'alg', title: 'Linear Programming', tag: 'Algebra', formulas: [
-    'Objective Function: Z = ax + by (maximize/minimize)',
-    'Decision Variables: x ≥ 0, y ≥ 0',
-    'Linear Constraints: aᵢx + bᵢy ≤ cᵢ (or ≥, =)',
-    'Corner Point Theorem: Optimal values always occur at the vertices (corner points) of the feasible region.'
-  ] },
+  {
+    catId: 'alg', title: 'Linear Programming', tag: 'Algebra', formulas: [
+      'Objective Function: Z = ax + by (maximize/minimize)',
+      'Decision Variables: x ≥ 0, y ≥ 0',
+      'Linear Constraints: aᵢx + bᵢy ≤ cᵢ (or ≥, =)',
+      'Corner Point Theorem: Optimal values always occur at the vertices (corner points) of the feasible region.'
+    ]
+  },
   // 16. Laplace Transforms
-  { catId: 'engg', title: 'Laplace Transforms', tag: 'Engg', formulas: [
-    'L{1} = 1/s',
-    'L{e^(at)} = 1 / (s − a)',
-    'L{tⁿ} = n! / sⁿ⁺¹',
-    'L{sin wt} = w / (s² + w²)',
-    'L{cos wt} = s / (s² + w²)',
-    'L{e^(at)·f(t)} = F(s − a)  [First Shifting]',
-    'L{f′(t)} = s·F(s) − f(0)'
-  ] },
+  {
+    catId: 'engg', title: 'Laplace Transforms', tag: 'Engg', formulas: [
+      'L{1} = 1/s',
+      'L{e^(at)} = 1 / (s − a)',
+      'L{tⁿ} = n! / sⁿ⁺¹',
+      'L{sin wt} = w / (s² + w²)',
+      'L{cos wt} = s / (s² + w²)',
+      'L{e^(at)·f(t)} = F(s − a)  [First Shifting]',
+      'L{f′(t)} = s·F(s) − f(0)'
+    ]
+  },
   // 17. Fourier Series
-  { catId: 'engg', title: 'Fourier Series', tag: 'Engg', formulas: [
-    'Expansion: f(x) = a₀/2 + Σ [aₙ cos(nx) + bₙ sin(nx)]',
-    'a₀ = (1/π) ∫[−π,π] f(x) dx',
-    'aₙ = (1/π) ∫[−π,π] f(x) cos(nx) dx',
-    'bₙ = (1/π) ∫[−π,π] f(x) sin(nx) dx'
-  ] },
+  {
+    catId: 'engg', title: 'Fourier Series', tag: 'Engg', formulas: [
+      'Expansion: f(x) = a₀/2 + Σ [aₙ cos(nx) + bₙ sin(nx)]',
+      'a₀ = (1/π) ∫[−π,π] f(x) dx',
+      'aₙ = (1/π) ∫[−π,π] f(x) cos(nx) dx',
+      'bₙ = (1/π) ∫[−π,π] f(x) sin(nx) dx'
+    ]
+  },
   // 18. Z-Transform
-  { catId: 'engg', title: 'Z-Transform', tag: 'Engg', formulas: [
-    'Definition: X(z) = Σ x[n] z⁻ⁿ  (n from −∞ to ∞)',
-    'Z{δ[n]} = 1  (unit impulse)',
-    'Z{u[n]} = z / (z − 1)  [ROC: |z| > 1] (unit step)',
-    'Z{aⁿ u[n]} = z / (z − a)  [ROC: |z| > |a|]',
-    'Z{n u[n]} = z / (z − 1)²'
-  ] },
+  {
+    catId: 'engg', title: 'Z-Transform', tag: 'Engg', formulas: [
+      'Definition: X(z) = Σ x[n] z⁻ⁿ  (n from −∞ to ∞)',
+      'Z{δ[n]} = 1  (unit impulse)',
+      'Z{u[n]} = z / (z − 1)  [ROC: |z| > 1] (unit step)',
+      'Z{aⁿ u[n]} = z / (z − a)  [ROC: |z| > |a|]',
+      'Z{n u[n]} = z / (z − 1)²'
+    ]
+  },
   // 19. Factorial & Stirling's
-  { catId: 'seq', title: 'Factorials', tag: 'Seq', formulas: [
-    'Definition: n! = n × (n − 1) × … × 1',
-    'Recurrence: n! = n × (n − 1)!',
-    'Zero Factorial: 0! = 1',
-    'Stirling\'s: n! ≈ √(2πn) · (n/e)ⁿ'
-  ], code: `function factorial(n) {\n  if (n < 0) return undefined;\n  return n <= 1 ? 1 : n * factorial(n - 1);\n}` },
+  {
+    catId: 'seq', title: 'Factorials', tag: 'Seq', formulas: [
+      'Definition: n! = n × (n − 1) × … × 1',
+      'Recurrence: n! = n × (n − 1)!',
+      'Zero Factorial: 0! = 1',
+      'Stirling\'s: n! ≈ √(2πn) · (n/e)ⁿ'
+    ], code: `function factorial(n) {\n  if (n < 0) return undefined;\n  return n <= 1 ? 1 : n * factorial(n - 1);\n}`
+  },
   // 20. Exponential Growth & Decay
-  { catId: 'alg', title: 'Exponential Growth', tag: 'Algebra', formulas: [
-    'Discrete Growth: N(t) = N₀(1 + r)ᵗ',
-    'Continuous Growth: N(t) = N₀ e^(kt)',
-    'Decay Model: N(t) = N₀ e^(−kt)',
-    'Half-Life: T_half = ln(2) / k ≈ 0.693 / k',
-    'Doubling Time: T_double = ln(2) / k'
-  ] },
+  {
+    catId: 'alg', title: 'Exponential Growth', tag: 'Algebra', formulas: [
+      'Discrete Growth: N(t) = N₀(1 + r)ᵗ',
+      'Continuous Growth: N(t) = N₀ e^(kt)',
+      'Decay Model: N(t) = N₀ e^(−kt)',
+      'Half-Life: T_half = ln(2) / k ≈ 0.693 / k',
+      'Doubling Time: T_double = ln(2) / k'
+    ]
+  },
   // 21. Recurrence Relations
-  { catId: 'cplx', title: 'Recurrence Relations', tag: 'Complexity', formulas: [
-    'Linear Homogeneous: aₙ = c₁aₙ₋₁ + c₂aₙ₋₂',
-    'Characteristic Equation: r² − c₁r − c₂ = 0',
-    'Distinct Roots r₁, r₂: aₙ = A(r₁)ⁿ + B(r₂)ⁿ',
-    'Repeated Root r: aₙ = (A + Bn)(r)ⁿ',
-    'Fibonacci: Fₙ = Fₙ₋₁ + Fₙ₋₂ ⟹ r² − r − 1 = 0'
-  ] },
+  {
+    catId: 'cplx', title: 'Recurrence Relations', tag: 'Complexity', formulas: [
+      'Linear Homogeneous: aₙ = c₁aₙ₋₁ + c₂aₙ₋₂',
+      'Characteristic Equation: r² − c₁r − c₂ = 0',
+      'Distinct Roots r₁, r₂: aₙ = A(r₁)ⁿ + B(r₂)ⁿ',
+      'Repeated Root r: aₙ = (A + Bn)(r)ⁿ',
+      'Fibonacci: Fₙ = Fₙ₋₁ + Fₙ₋₂ ⟹ r² − r − 1 = 0'
+    ]
+  },
   // 22. Graph Theory Basics
-  { catId: 'discrete', title: 'Graph Theory Basics', tag: 'Discrete', formulas: [
-    'Handshaking Lemma: Σ deg(v) = 2|E|',
-    'Euler\'s Formula (Planar): V − E + F = 2',
-    'Trees Property: |E| = |V| − 1 (connected, acyclic)',
-    'Sum of interior angles of region: Σ deg(f) = 2|E|',
-    'Complete Graph Kₙ Edges: n(n − 1) / 2',
-    'Bipartite max edges: V² / 4'
-  ] },
+  {
+    catId: 'discrete', title: 'Graph Theory Basics', tag: 'Discrete', formulas: [
+      'Handshaking Lemma: Σ deg(v) = 2|E|',
+      'Euler\'s Formula (Planar): V − E + F = 2',
+      'Trees Property: |E| = |V| − 1 (connected, acyclic)',
+      'Sum of interior angles of region: Σ deg(f) = 2|E|',
+      'Complete Graph Kₙ Edges: n(n − 1) / 2',
+      'Bipartite max edges: V² / 4'
+    ]
+  },
   // 23. Boolean Algebra
-  { catId: 'discrete', title: 'Boolean Algebra', tag: 'Discrete', formulas: [
-    'Identity: A + 0 = A,  A · 1 = A',
-    'Dominance: A + 1 = 1,  A · 0 = 0',
-    'Idempotent: A + A = A,  A · A = A',
-    'Complement: A + A′ = 1,  A · A′ = 0',
-    'Double Negation: (A′)′ = A',
-    'Commutative: A + B = B + A,  A · B = B · A',
-    'Distributive: A + (B · C) = (A + B) · (A + C)',
-    'Distributive: A · (B + C) = (A · B) + (A · C)',
-    'De Morgan: (A + B)′ = A′ · B′',
-    'De Morgan: (A · B)′ = A′ + B′',
-    'Absorption: A + (A · B) = A,  A · (A + B) = A',
-    'Consensus: AB + A′C + BC = AB + A′C'
-  ] },
+  {
+    catId: 'discrete', title: 'Boolean Algebra', tag: 'Discrete', formulas: [
+      'Identity: A + 0 = A,  A · 1 = A',
+      'Dominance: A + 1 = 1,  A · 0 = 0',
+      'Idempotent: A + A = A,  A · A = A',
+      'Complement: A + A′ = 1,  A · A′ = 0',
+      'Double Negation: (A′)′ = A',
+      'Commutative: A + B = B + A,  A · B = B · A',
+      'Distributive: A + (B · C) = (A + B) · (A + C)',
+      'Distributive: A · (B + C) = (A · B) + (A · C)',
+      'De Morgan: (A + B)′ = A′ · B′',
+      'De Morgan: (A · B)′ = A′ + B′',
+      'Absorption: A + (A · B) = A,  A · (A + B) = A',
+      'Consensus: AB + A′C + BC = AB + A′C'
+    ]
+  },
 ];
 
 /* ── STATE ── */
@@ -758,8 +804,8 @@ function downloadHTMLApp() {
   }
 
   // Show FAB immediately (install is available but not yet triggered)
-  const fab=document.getElementById('ms-fab');
-  if(fab)fab.classList.add('fab-visible');
+  const fab = document.getElementById('ms-fab');
+  if (fab) fab.classList.add('fab-visible');
 
   /* ── Touch swipe-down to dismiss ── */
   let touchStartY = 0;
@@ -793,33 +839,33 @@ function showMobileSheet() {
     });
   });
   // Pulse the FAB only once
-  const fab=document.getElementById('ms-fab');
-  if(fab)fab.classList.remove('fab-visible');
+  const fab = document.getElementById('ms-fab');
+  if (fab) fab.classList.remove('fab-visible');
 }
 
-function hideMobileSheet(permanent){
-  const sheet=document.getElementById('mobile-sheet');
-  const bd=document.getElementById('ms-backdrop');
-  if(sheet)sheet.classList.remove('ms-open');
-  if(bd)bd.classList.remove('ms-open');
+function hideMobileSheet(permanent) {
+  const sheet = document.getElementById('mobile-sheet');
+  const bd = document.getElementById('ms-backdrop');
+  if (sheet) sheet.classList.remove('ms-open');
+  if (bd) bd.classList.remove('ms-open');
   // After the CSS transition, hide the elements
-  setTimeout(()=>{
-    if(sheet)sheet.style.display='none';
-    if(bd)bd.style.display='none';
-  },420);
-  if(!permanent){
+  setTimeout(() => {
+    if (sheet) sheet.style.display = 'none';
+    if (bd) bd.style.display = 'none';
+  }, 420);
+  if (!permanent) {
     // Re-show the FAB so the user can open it again later
-    const fab=document.getElementById('ms-fab');
-    if(fab)fab.classList.add('fab-visible');
+    const fab = document.getElementById('ms-fab');
+    if (fab) fab.classList.add('fab-visible');
   }
 }
 
-function hideFAB(){
-  const fab=document.getElementById('ms-fab');
-  if(fab)fab.classList.remove('fab-visible');
+function hideFAB() {
+  const fab = document.getElementById('ms-fab');
+  if (fab) fab.classList.remove('fab-visible');
 }
 
-function closeInstallModal(){
+function closeInstallModal() {
   hideMobileSheet(true);
 }
 
