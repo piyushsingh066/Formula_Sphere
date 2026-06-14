@@ -17,28 +17,53 @@
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/jpeg" href="logo.jpg">
 </head>
 
 <body>
+
+  <!-- Splash Screen -->
+  <div id="splash-screen">
+    <div class="splash-logo">
+      <img src="logo.jpg" alt="FormulaSphere Logo" class="splash-logo-img">
+      <span>Formula</span>Sphere
+    </div>
+    <div class="splash-loader">
+      <div class="splash-progress"></div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var splashDismissed = false;
+      function dismissSplash() {
+        if (splashDismissed) return;
+        splashDismissed = true;
+        var splash = document.getElementById('splash-screen');
+        if (splash) {
+          splash.style.opacity = '0';
+          splash.style.transform = 'scale(1.06)';
+          splash.style.pointerEvents = 'none';
+          setTimeout(function() {
+            splash.remove();
+          }, 450);
+        }
+      }
+      window.addEventListener('load', function() {
+        setTimeout(dismissSplash, 1200); // Premium visual load time
+      });
+      // Fallback
+      setTimeout(dismissSplash, 3000);
+    })();
+  </script>
 
   <header id="topbar">
     <button id="menu-btn" onclick="toggleSidebar()" title="Toggle sidebar">
       <span></span><span></span><span></span>
     </button>
     
-    <!-- Clean, modern compact logo/icon -->
     <div class="logo" onclick="goToDashboard()" title="Dashboard">
-      <svg class="logo-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="10" stroke="url(#logo-grad)" stroke-width="2.5" />
-        <path d="M12 7v10M7 12h10" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linecap="round" />
-        <defs>
-          <linearGradient id="logo-grad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#3b82f6" />
-            <stop offset="100%" stop-color="#8b5cf6" />
-          </linearGradient>
-        </defs>
-      </svg>
-      <span>Formula</span>
+      <img src="logo.jpg" alt="FormulaSphere Logo" class="logo-img">
+      <span>Formula</span>Sphere
     </div>
 
     <!-- Mobile search trigger button -->
@@ -49,7 +74,7 @@
     <div id="search-wrap">
       <span class="search-icon">&#x2315;</span>
       <input id="search" type="text" placeholder="Search formulas&hellip;" oninput="handleSearch(this.value)"
-        autocomplete="off">
+        autocomplete="off" maxlength="100">
       <button id="search-clear-btn" onclick="clearSearchInput(event)" title="Clear search" style="display:none;">&times;</button>
     </div>
     
@@ -90,227 +115,40 @@
   <div id="toast"></div>
 
   <!-- ─────────────────────────────────────────
-     MOBILE INSTALL SHEET
-     ───────────────────────────────────────── -->
-
-  <div id="ms-backdrop" onclick="hideMobileSheet()"></div>
-
-  <div id="mobile-sheet" role="dialog" aria-modal="true" aria-label="Install FormulaSphere">
-
-    <!-- Drag handle -->
-    <div class="ms-handle"></div>
-
-    <!-- Header -->
-    <div class="ms-header">
-      <div class="ms-app-icon">&#x25CE;</div>
-      <div class="ms-header-info">
-        <div id="ms-platform-pill" class="ms-platform-pill" style="display:none"></div>
-        <div class="ms-header-title">Install FormulaSphere</div>
-        <div class="ms-header-sub">Free &bull; No store &bull; Works offline</div>
-      </div>
-    </div>
-
-    <!-- One-tap native notice (Android Chrome only) -->
-    <div class="ms-native-notice" id="ms-native-notice">
-      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-        <circle cx="10" cy="10" r="9" stroke="#34a853" stroke-width="1.6" />
-        <path d="M6 10l3 3 5-5" stroke="#34a853" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-      <div class="ms-native-text"><b>One-tap install ready</b> — tap the button below to install directly</div>
-    </div>
-
-    <div class="ms-divider"></div>
-
-    <!-- ── Android Steps ── -->
-    <div id="ms-android-steps" style="display:none">
-      <div class="ms-steps">
-        <div class="ms-step">
-          <div class="ms-step-n a">1</div>
-          <div class="ms-step-txt">Tap <span class="ms-tag a">&#8942; Menu</span> in <b>Chrome's top-right corner</b>
-          </div>
-        </div>
-        <div class="ms-step">
-          <div class="ms-step-n a">2</div>
-          <div class="ms-step-txt">Select <span class="ms-tag a">Add to Home screen</span> from the list</div>
-        </div>
-        <div class="ms-step">
-          <div class="ms-step-n a">3</div>
-          <div class="ms-step-txt">Tap <b>Add</b> on the confirmation — done! &#x2705; Launches like a native app, no
-            browser bar</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── iOS Steps ── -->
-    <div id="ms-ios-steps" style="display:none">
-      <div class="ms-steps">
-        <!-- Safari warning -->
-        <div class="ms-step" style="background:rgba(251,191,36,.06);border-color:rgba(251,191,36,.2)">
-          <div class="ms-step-n w">!</div>
-          <div class="ms-step-txt" style="color:#fbbf24">Must be open in <b>Safari</b> — Chrome &amp; Firefox on iOS
-            don't support this</div>
-        </div>
-        <div class="ms-step">
-          <div class="ms-step-n i">1</div>
-          <div class="ms-step-txt">Tap the
-            <span class="ms-tag i">
-              <svg class="ms-share-svg" width="11" height="13" viewBox="0 0 11 14" fill="none">
-                <path d="M5.5 1v9M2.5 6l3 3.5L8.5 6M1 12h9" stroke="currentColor" stroke-width="1.6"
-                  stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-              Share
-            </span>
-            button at the <b>bottom of Safari</b>
-          </div>
-        </div>
-        <div class="ms-step">
-          <div class="ms-step-n i">2</div>
-          <div class="ms-step-txt">Scroll and tap <span class="ms-tag i">Add to Home Screen</span></div>
-        </div>
-        <div class="ms-step">
-          <div class="ms-step-n i">3</div>
-          <div class="ms-step-txt">Tap <b>Add</b> (top-right) — FormulaSphere appears as an app icon &#x2705;</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Actions -->
-    <div class="ms-actions">
-      <button id="ms-primary-btn" onclick="mobileSheetAction()">
-        Add to Home Screen
-      </button>
-      <button id="ms-apk-btn" onclick="downloadAPKProject();hideMobileSheet(true)"
-        style="width:100%;padding:12px 20px;background:transparent;border:1px solid rgba(59,130,246,.4);border-radius:12px;color:var(--blue);font-size:13px;font-family:var(--sans);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .15s">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-          <path d="M8 1v9M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.8"
-            stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        Download APK instead
-      </button>
-      <button id="ms-dismiss-btn" onclick="hideMobileSheet(true)">Not now</button>
-    </div>
-
-  </div>
-
-  <!-- ─────────────────────────────────────────
-     DESKTOP/DEVICES INSTALL MODAL
+     DOWNLOAD APP MODAL
      ───────────────────────────────────────── -->
   <div id="install-modal-backdrop" onclick="closeInstallModal()"></div>
-  <div id="install-modal" class="modal-card" role="dialog" aria-modal="true" aria-label="Install Guide">
+  <div id="install-modal" class="modal-card" role="dialog" aria-modal="true" aria-label="Download Guide">
     <div class="modal-head">
       <div class="modal-title">
-        <span class="modal-title-icon">&#x25CE;</span> Install FormulaSphere
+        <span class="modal-title-icon">&#x1F4E5;</span> Download FormulaSphere
       </div>
       <button class="modal-close" onclick="closeInstallModal()">&times;</button>
     </div>
-    <div class="modal-tabs">
-      <button class="m-tab active android" onclick="switchModalTab('android', this)">
-        <span class="t-icon">&#x1F4F1;</span> Android
-      </button>
-      <button class="m-tab ios" onclick="switchModalTab('ios', this)">
-        <span class="t-icon">&#x1F34E;</span> iOS
-      </button>
-      <button class="m-tab desktop" onclick="switchModalTab('desktop', this)">
-        <span class="t-icon">&#x1F4BB;</span> Desktop
-      </button>
-      <button class="m-tab download" onclick="switchModalTab('download', this)">
-        <span class="t-icon">&#x1F4E5;</span> Download
-      </button>
-    </div>
     <div class="modal-body">
-      <!-- Android Panel -->
-      <div id="modal-tab-android" class="tab-panel active">
-        <div class="native-box android-box" id="android-native-box" style="display:none;">
-          <div class="nb-label and">One-Tap Install</div>
-          <div class="nb-title">Chrome Direct Install</div>
-          <div class="nb-desc">You can install FormulaSphere instantly on this browser.</div>
-          <button class="dl-btn android-btn" onclick="doNativeInstall()">Install Now</button>
-        </div>
-        <div class="step-card">
-          <div class="step-row">
-            <div class="step-num android">1</div>
-            <div class="step-text">Open this site in <strong>Google Chrome</strong> on Android.</div>
-          </div>
-          <div class="step-row">
-            <div class="step-num android">2</div>
-            <div class="step-text">Tap the <span class="badge and">&#8942; Menu</span> icon in the top-right corner.</div>
-          </div>
-          <div class="step-row">
-            <div class="step-num android">3</div>
-            <div class="step-text">Select <strong>Add to Home screen</strong> or <strong>Install app</strong> from the list.</div>
+      <div class="dl-section">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <img src="logo.jpg" alt="FormulaSphere Logo" style="width:44px;height:44px;border-radius:50%;border:1px solid rgba(59,130,246,0.3);object-fit:cover;background:var(--card);">
+          <div>
+            <div class="dl-label">Android Package</div>
+            <div class="dl-title">Download APK File</div>
           </div>
         </div>
-      </div>
-
-      <!-- iOS Panel -->
-      <div id="modal-tab-ios" class="tab-panel">
-        <div class="step-card">
-          <div class="step-row">
-            <div class="step-num ios">1</div>
-            <div class="step-text">Open this site in <strong>Safari</strong> (other browsers don't support this on iOS).</div>
-          </div>
-          <div class="step-row">
-            <div class="step-num ios">2</div>
-            <div class="step-text">Tap the <span class="badge ios-b">Share</span> button in Safari's bottom toolbar.</div>
-          </div>
-          <div class="step-row">
-            <div class="step-num ios">3</div>
-            <div class="step-text">Scroll down and tap <strong>Add to Home Screen</strong>.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Desktop Panel -->
-      <div id="modal-tab-desktop" class="tab-panel">
-        <div class="native-box desktop-box" id="desktop-native-box" style="display:none;">
-          <div class="nb-label desk">Desktop App</div>
-          <div class="nb-title">Install PWA on Desktop</div>
-          <div class="nb-desc">Launch FormulaSphere from your dock or desktop with offline capabilities.</div>
-          <button class="dl-btn desk-btn" onclick="doNativeInstall()">Install PWA</button>
-        </div>
-        <div class="step-card">
-          <div class="step-row">
-            <div class="step-num desktop">1</div>
-            <div class="step-text">In <strong>Chrome</strong>, <strong>Edge</strong>, or <strong>Brave</strong>, look at the right of the address bar.</div>
-          </div>
-          <div class="step-row">
-            <div class="step-num desktop">2</div>
-            <div class="step-text">Click the <strong>Install icon</strong> (a monitor with a down arrow, or a plus icon).</div>
-          </div>
-          <div class="step-row">
-            <div class="step-num desktop">3</div>
-            <div class="step-text">Confirm the installation prompt to add it to your apps list.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Download Panel -->
-      <div id="modal-tab-download" class="tab-panel">
-        <div class="dl-section">
-          <div class="dl-label">Android Package</div>
-          <div class="dl-title">Download APK File</div>
-          <div class="dl-desc">Prefer a native Android app? Download the signed offline APK.</div>
-          <a href="./FormulaSphere.apk" download="FormulaSphere.apk">
-            <button class="dl-btn green-btn">Download APK (5.1 MB)</button>
-          </a>
-        </div>
-        <div class="dl-section" style="background:rgba(59,130,246,.07);border-color:rgba(59,130,246,.25);">
-          <div class="dl-label" style="color:var(--blue)">Source Code</div>
-          <div class="dl-title">Download Android Project</div>
-          <div class="dl-desc">Download the complete Gradle/Cordova project for Android Studio.</div>
-          <button class="dl-btn android-btn" onclick="downloadAPKProject()">Download Android Source Code</button>
-        </div>
+        <div class="dl-desc">Prefer a native Android app? Download the signed offline APK.</div>
+        <a href="./FormulaSphere.apk" download="FormulaSphere.apk">
+          <button class="dl-btn green-btn">Download APK (5.1 MB)</button>
+        </a>
       </div>
     </div>
     <div class="modal-footer">
-      <button class="modal-ok" onclick="closeInstallModal()">Close Guide</button>
+      <button class="modal-ok" onclick="closeInstallModal()">Close</button>
     </div>
   </div>
 
   <footer>
     <div class="footer-content">
-      <div class="footer-left">
-        &#x25CE; FormulaSphere &copy; 2026
+      <div class="footer-left" style="display:flex;align-items:center;gap:6px;">
+        <img src="logo.jpg" alt="" class="footer-logo-img"> FormulaSphere &copy; 2026
       </div>
       <div class="footer-right">
         Made with &#10084;&#65039; by Piyush.
