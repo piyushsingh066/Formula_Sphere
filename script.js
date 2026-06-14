@@ -426,6 +426,10 @@ function toggleSidebarExpand(catId, e) {
 }
 function handleSearch(query) {
   const q = query.trim().toLowerCase();
+  const clearBtn = document.getElementById('search-clear-btn');
+  if (clearBtn) {
+    clearBtn.style.display = query.length > 0 ? 'block' : 'none';
+  }
   if (!q) {
     if (VIEW === 'section' && ACTIVE_CAT && ACTIVE_SECTION_TITLE) renderSectionView(ACTIVE_CAT, ACTIVE_SECTION_TITLE);
     else if (ACTIVE_CAT && VIEW !== 'dashboard') renderTopicView(ACTIVE_CAT);
@@ -433,6 +437,35 @@ function handleSearch(query) {
     return;
   }
   VIEW = 'search'; buildSidebar(); renderSearch(q);
+}
+
+function openMobileSearch() {
+  const topbar = document.getElementById('topbar');
+  if (topbar) topbar.classList.add('search-mode');
+  const searchInput = document.getElementById('search');
+  if (searchInput) {
+    searchInput.focus();
+  }
+}
+
+function closeMobileSearch() {
+  const topbar = document.getElementById('topbar');
+  if (topbar) topbar.classList.remove('search-mode');
+  const searchInput = document.getElementById('search');
+  if (searchInput) {
+    searchInput.value = '';
+    handleSearch('');
+  }
+}
+
+function clearSearchInput(event) {
+  if (event) event.stopPropagation();
+  const searchInput = document.getElementById('search');
+  if (searchInput) {
+    searchInput.value = '';
+    searchInput.focus();
+  }
+  handleSearch('');
 }
 
 /* ── SIDEBAR ── */
@@ -864,11 +897,52 @@ function hideFAB() {
   const fab = document.getElementById('ms-fab');
   if (fab) fab.classList.remove('fab-visible');
 }
+function handleInstallClick() {
+  if (deferredPrompt) {
+    doNativeInstall();
+  } else {
+    const UA = navigator.userAgent || '';
+    const isIOS = /iPad|iPhone|iPod/.test(UA) && !window.MSStream;
+    const isAndroid = /Android/.test(UA);
+    if (isIOS || isAndroid) {
+      showMobileSheet();
+    } else {
+      showDesktopInstallModal();
+    }
+  }
+}
+
+function showDesktopInstallModal() {
+  const modal = document.getElementById('install-modal');
+  const bd = document.getElementById('install-modal-backdrop');
+  if (modal) { modal.style.display = 'flex'; modal.offsetHeight; modal.classList.add('open'); }
+  if (bd) { bd.style.display = 'block'; bd.offsetHeight; bd.classList.add('open'); }
+  const andNative = document.getElementById('android-native-box');
+  const deskNative = document.getElementById('desktop-native-box');
+  if (deferredPrompt) {
+    if (andNative) andNative.style.display = 'block';
+    if (deskNative) deskNative.style.display = 'block';
+  } else {
+    if (andNative) andNative.style.display = 'none';
+    if (deskNative) deskNative.style.display = 'none';
+  }
+}
 
 function closeInstallModal() {
   hideMobileSheet(true);
+  const modal = document.getElementById('install-modal');
+  const bd = document.getElementById('install-modal-backdrop');
+  if (modal) { modal.classList.remove('open'); setTimeout(() => { modal.style.display = 'none'; }, 250); }
+  if (bd) { bd.classList.remove('open'); setTimeout(() => { bd.style.display = 'none'; }, 250); }
 }
 
+function switchModalTab(tabId, el) {
+  document.querySelectorAll('.modal-tabs .m-tab').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+  document.querySelectorAll('.modal-body .tab-panel').forEach(p => p.classList.remove('active'));
+  const activePanel = document.getElementById('modal-tab-' + tabId);
+  if (activePanel) activePanel.classList.add('active');
+}
 
 function mobileSheetAction() {
   if (deferredPrompt) {

@@ -25,24 +25,49 @@
     <button id="menu-btn" onclick="toggleSidebar()" title="Toggle sidebar">
       <span></span><span></span><span></span>
     </button>
-    <div class="logo" onclick="goToDashboard()" title="Dashboard">&#x25CE; <span>Formula</span>Sphere</div>
+    
+    <!-- Clean, modern compact logo/icon -->
+    <div class="logo" onclick="goToDashboard()" title="Dashboard">
+      <svg class="logo-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" stroke="url(#logo-grad)" stroke-width="2.5" />
+        <path d="M12 7v10M7 12h10" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linecap="round" />
+        <defs>
+          <linearGradient id="logo-grad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#3b82f6" />
+            <stop offset="100%" stop-color="#8b5cf6" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <span>Formula</span>
+    </div>
+
+    <!-- Mobile search trigger button -->
+    <button id="search-trigger-btn" onclick="openMobileSearch()" title="Open search">
+      <span class="search-trigger-icon">&#x2315;</span>
+    </button>
+
     <div id="search-wrap">
       <span class="search-icon">&#x2315;</span>
       <input id="search" type="text" placeholder="Search formulas&hellip;" oninput="handleSearch(this.value)"
         autocomplete="off">
+      <button id="search-clear-btn" onclick="clearSearchInput(event)" title="Clear search" style="display:none;">&times;</button>
     </div>
+    
+    <!-- Cancel button for exiting mobile search -->
+    <button id="search-close-btn" onclick="closeMobileSearch()" title="Cancel search">Cancel</button>
+
     <div class="top-stats">
       <span class="stat"><b id="total-count">0</b> formulas</span>
       <span class="stat"><b>14</b> topics</span>
     </div>
-    <button id="install-btn" title="Install FormulaSphere as an app">
-      <a href="./FormulaSphere.apk" target="_blank" style="display:flex;align-items:center;gap:6px;color:inherit">
-        <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-          <path d="M8 1v9M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.6"
-            stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        <span class="install-label" id="install-label">Install App</span>
-      </a>
+
+    <!-- PWA Install button (functional) -->
+    <button id="install-btn" title="Install FormulaSphere" onclick="handleInstallClick()">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+        <path d="M8 1v9M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.6"
+          stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <span class="install-label" id="install-label">Install App</span>
     </button>
   </header>
 
@@ -165,6 +190,121 @@
       <button id="ms-dismiss-btn" onclick="hideMobileSheet(true)">Not now</button>
     </div>
 
+  </div>
+
+  <!-- ─────────────────────────────────────────
+     DESKTOP/DEVICES INSTALL MODAL
+     ───────────────────────────────────────── -->
+  <div id="install-modal-backdrop" onclick="closeInstallModal()"></div>
+  <div id="install-modal" class="modal-card" role="dialog" aria-modal="true" aria-label="Install Guide">
+    <div class="modal-head">
+      <div class="modal-title">
+        <span class="modal-title-icon">&#x25CE;</span> Install FormulaSphere
+      </div>
+      <button class="modal-close" onclick="closeInstallModal()">&times;</button>
+    </div>
+    <div class="modal-tabs">
+      <button class="m-tab active android" onclick="switchModalTab('android', this)">
+        <span class="t-icon">&#x1F4F1;</span> Android
+      </button>
+      <button class="m-tab ios" onclick="switchModalTab('ios', this)">
+        <span class="t-icon">&#x1F34E;</span> iOS
+      </button>
+      <button class="m-tab desktop" onclick="switchModalTab('desktop', this)">
+        <span class="t-icon">&#x1F4BB;</span> Desktop
+      </button>
+      <button class="m-tab download" onclick="switchModalTab('download', this)">
+        <span class="t-icon">&#x1F4E5;</span> Download
+      </button>
+    </div>
+    <div class="modal-body">
+      <!-- Android Panel -->
+      <div id="modal-tab-android" class="tab-panel active">
+        <div class="native-box android-box" id="android-native-box" style="display:none;">
+          <div class="nb-label and">One-Tap Install</div>
+          <div class="nb-title">Chrome Direct Install</div>
+          <div class="nb-desc">You can install FormulaSphere instantly on this browser.</div>
+          <button class="dl-btn android-btn" onclick="doNativeInstall()">Install Now</button>
+        </div>
+        <div class="step-card">
+          <div class="step-row">
+            <div class="step-num android">1</div>
+            <div class="step-text">Open this site in <strong>Google Chrome</strong> on Android.</div>
+          </div>
+          <div class="step-row">
+            <div class="step-num android">2</div>
+            <div class="step-text">Tap the <span class="badge and">&#8942; Menu</span> icon in the top-right corner.</div>
+          </div>
+          <div class="step-row">
+            <div class="step-num android">3</div>
+            <div class="step-text">Select <strong>Add to Home screen</strong> or <strong>Install app</strong> from the list.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- iOS Panel -->
+      <div id="modal-tab-ios" class="tab-panel">
+        <div class="step-card">
+          <div class="step-row">
+            <div class="step-num ios">1</div>
+            <div class="step-text">Open this site in <strong>Safari</strong> (other browsers don't support this on iOS).</div>
+          </div>
+          <div class="step-row">
+            <div class="step-num ios">2</div>
+            <div class="step-text">Tap the <span class="badge ios-b">Share</span> button in Safari's bottom toolbar.</div>
+          </div>
+          <div class="step-row">
+            <div class="step-num ios">3</div>
+            <div class="step-text">Scroll down and tap <strong>Add to Home Screen</strong>.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop Panel -->
+      <div id="modal-tab-desktop" class="tab-panel">
+        <div class="native-box desktop-box" id="desktop-native-box" style="display:none;">
+          <div class="nb-label desk">Desktop App</div>
+          <div class="nb-title">Install PWA on Desktop</div>
+          <div class="nb-desc">Launch FormulaSphere from your dock or desktop with offline capabilities.</div>
+          <button class="dl-btn desk-btn" onclick="doNativeInstall()">Install PWA</button>
+        </div>
+        <div class="step-card">
+          <div class="step-row">
+            <div class="step-num desktop">1</div>
+            <div class="step-text">In <strong>Chrome</strong>, <strong>Edge</strong>, or <strong>Brave</strong>, look at the right of the address bar.</div>
+          </div>
+          <div class="step-row">
+            <div class="step-num desktop">2</div>
+            <div class="step-text">Click the <strong>Install icon</strong> (a monitor with a down arrow, or a plus icon).</div>
+          </div>
+          <div class="step-row">
+            <div class="step-num desktop">3</div>
+            <div class="step-text">Confirm the installation prompt to add it to your apps list.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Download Panel -->
+      <div id="modal-tab-download" class="tab-panel">
+        <div class="dl-section">
+          <div class="dl-label">Android Package</div>
+          <div class="dl-title">Download APK File</div>
+          <div class="dl-desc">Prefer a native Android app? Download the signed offline APK.</div>
+          <a href="./FormulaSphere.apk" download="FormulaSphere.apk">
+            <button class="dl-btn green-btn">Download APK (5.1 MB)</button>
+          </a>
+        </div>
+        <div class="dl-section" style="background:rgba(59,130,246,.07);border-color:rgba(59,130,246,.25);">
+          <div class="dl-label" style="color:var(--blue)">Source Code</div>
+          <div class="dl-title">Download Android Project</div>
+          <div class="dl-desc">Download the complete Gradle/Cordova project for Android Studio.</div>
+          <button class="dl-btn android-btn" onclick="downloadAPKProject()">Download Android Source Code</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-ok" onclick="closeInstallModal()">Close Guide</button>
+    </div>
   </div>
 
   <footer>
